@@ -29,13 +29,12 @@ void main() {
 
     float dotProd = dot(new_normal, norm_light_direction);
     dotProd = dotProd < 0.0 ? 0.0 : dotProd;
-    //dotProd = dotProd > 1.0 ? 1.0 : dotProd;
     
     diffuse = light_color * dotProd;
-
-    float powerResult = pow(dot((2.0 * dotProd * (new_normal - new_position)), (new_position - camera_position)), material_shininess);
+    vec3 rVec =  reflect(norm_light_direction, new_normal);
+    vec3 normalize_new_direction = normalize(camera_position - new_position);
+    float powerResult = pow(dot(rVec, normalize_new_direction), material_shininess);
     powerResult = powerResult < 0.0 ? 0.0 : powerResult;
-    //powerResult > 1.0 ? 1.0 : powerResult;
 
     specular = light_color * powerResult;
 }
