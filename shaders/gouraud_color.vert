@@ -37,8 +37,8 @@ void main() {
 
     // Specular
     vec3 rVec =  reflect(-norm_light_direction, new_normal);
-    vec3 normalize_new_direction = normalize(camera_position - new_position);
-    float powerResult = pow(max(dot(rVec, normalize_new_direction), 0.0), material_shininess);
+    vec3 vVec = normalize(camera_position - new_position);
+    float powerResult = pow(max(dot(rVec, vVec), 0.0), material_shininess);
 
-    specular = light_color * pow(max(dot(rVec, normalize_new_direction), 0.0), material_shininess);//light_color * powerResult;
+    specular = light_color * pow(max(dot(rVec, vVec), 0.0), material_shininess);//light_color * powerResult;
 }

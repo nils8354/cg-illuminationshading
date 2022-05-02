@@ -61,7 +61,7 @@ class GlApp {
         this.shader.gouraud_color = this.createShaderProgram(shaders[0], shaders[1]);
         this.shader.gouraud_texture = this.createShaderProgram(shaders[2], shaders[3]);
         this.shader.phong_color = this.createShaderProgram(shaders[4], shaders[5]);
-        this.shader.phone_texture = this.createShaderProgram(shaders[6], shaders[7]);
+        this.shader.phong_texture = this.createShaderProgram(shaders[6], shaders[7]);
         this.shader.emissive = this.createShaderProgram(shaders[8], shaders[9]);
 
         this.initializeGlApp();
@@ -160,7 +160,7 @@ class GlApp {
             // TODO: properly select shader here
             //
             console.log(this.algorithm);
-            let selected_shader = "phong_color";
+            let selected_shader = this.algorithm + "_" + this.scene.models[i].shader;
             //let selected_shader = "emissive";
             this.gl.useProgram(this.shader[selected_shader].program);
 
