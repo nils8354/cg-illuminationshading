@@ -16,8 +16,8 @@ uniform float material_shininess; // n
 out vec4 FragColor;
 
 void main() {
-    // Ambient
-    vec3 ambient = light_ambient;
+
+    
 
     vec3 norm_light_direction = normalize(light_position - frag_pos);
     // Diffuse
@@ -25,12 +25,12 @@ void main() {
 
     // Specular
     vec3 rVec =  reflect(-norm_light_direction, frag_normal);
-    vec3 normalize_new_direction = normalize(camera_position - frag_pos);
-    float powerResult = pow(max(dot(rVec, normalize_new_direction), 0.0), material_shininess);
+    vec3 vVec = normalize(camera_position - frag_pos);
+    float powerResult = pow(max(dot(rVec, vVec), 0.0), material_shininess);
 
     vec3 specular = light_color * powerResult;
 
-    vec3 ambient_value = ambient * material_color;
+    vec3 ambient_value = light_ambient * material_color;
     vec3 diffuse_value = diffuse * material_color;
     vec3 specular_value = specular * material_specular;
 
