@@ -156,12 +156,9 @@ class GlApp {
         for (let i = 0; i < this.scene.models.length; i ++) {
             if (this.vertex_array[this.scene.models[i].type] == null) continue;
             
-            //
-            // TODO: properly select shader here
-            //
-            console.log(this.algorithm);
+
+            console.log(this.algorithm+ "_" + this.scene.models[i].shader);
             let selected_shader = this.algorithm + "_" + this.scene.models[i].shader;
-            //let selected_shader = "emissive";
             this.gl.useProgram(this.shader[selected_shader].program);
 
             // transform model to proper position, size, and orientation
@@ -178,13 +175,23 @@ class GlApp {
             this.gl.uniformMatrix4fv(this.shader[selected_shader].uniforms.view_matrix, false, this.view_matrix);
             this.gl.uniformMatrix4fv(this.shader[selected_shader].uniforms.model_matrix, false, this.model_matrix);
 
-            //
-            // TODO: bind proper texture and set uniform (if shader is a textured one)
-            //
-
             this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_ambient, this.scene.light.ambient);
-            this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_position, this.scene.light.point_lights[0].position);
-            this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_color, this.scene.light.point_lights[0].color);
+
+
+            let light_position_array = new Array(10);
+            let light_color_array = new Array(10);
+            
+            for(let i = 0; i < this.scene.light.point_lights.length; i ++) {
+                light_color_array[i] = this.scene.light.point_lights[i].color;
+                light_position_array[i] = this.scene.light.point_lights[i].position;
+            }
+
+            this.gl.uniform1i(this.shader[selected_shader].uniforms.array_length, this.scene.light.point_lights.length);
+
+
+            this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_positions, light_position_array);
+            this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_colors, light_color_array);
+            
             this.gl.uniform3fv(this.shader[selected_shader].uniforms.camera_position, this.scene.camera.position);
 
             this.gl.uniform1f(this.shader[selected_shader].uniforms.material_shininess, this.scene.models[i].material.shininess);
