@@ -181,15 +181,12 @@ class GlApp {
             let light_position_array = new Array(10);
             let light_color_array = new Array(10);
             
-            for(let i = 0; i < 10; i ++) {
-                if(i > this.scene.light.point_lights.length - 1){
-                    light_color_array[i] = vec3.fromValues(0.0, 0.0, 0.0);
-                    light_position_array[i] = vec3.fromValues(0.0, 0.0, 0.0);
-                } else {
-                    light_color_array[i] = this.scene.light.point_lights[i].color;
-                    light_position_array[i] = this.scene.light.point_lights[i].position;
-                }
+            for(let i = 0; i < this.scene.light.point_lights.length; i ++) {
+                light_color_array[i] = this.scene.light.point_lights[i].color;
+                light_position_array[i] = this.scene.light.point_lights[i].position;
             }
+
+            this.gl.uniform1i(this.shader[selected_shader].uniforms.array_length, this.scene.light.point_lights.length);
 
 
             this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_positions, light_position_array);

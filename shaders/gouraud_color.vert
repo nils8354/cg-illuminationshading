@@ -6,6 +6,7 @@ in vec3 vertex_position;
 in vec3 vertex_normal;
 
 uniform vec3 light_ambient;
+uniform int array_length;
 uniform vec3 light_positions[10];
 uniform vec3 light_colors[10]; // I_p
 uniform vec3 camera_position;
@@ -33,11 +34,7 @@ void main() {
     vec3 sumDiffuse = vec3(0.0, 0.0, 0.0);
     vec3 sumSpecular = vec3(0.0, 0.0, 0.0);
 
-    for(int i = 0; i < 10; i++) {
-
-        if(light_colors[i] == vec3(0.0, 0.0, 0.0)) {
-            break;
-        }
+    for(int i = 0; i < array_length; i++) {
 
         vec3 norm_light_direction = normalize(light_positions[i] - new_position);
 

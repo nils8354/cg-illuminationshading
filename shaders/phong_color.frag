@@ -6,6 +6,7 @@ in vec3 frag_pos;
 in vec3 frag_normal;
 
 uniform vec3 light_ambient;
+uniform int array_length;
 uniform vec3 light_positions[10];
 uniform vec3 light_colors[10];
 uniform vec3 camera_position;
