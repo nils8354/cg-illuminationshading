@@ -145,7 +145,7 @@ class GlApp {
     updateTexture(texture, image_element) {
         //
         // TODO: update image for specified texture
-        //
+        //    
     }
 
     render() {
