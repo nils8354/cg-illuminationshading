@@ -30,6 +30,8 @@ void main() {
     // Ambient
     ambient = light_ambient;
 
+    vec3 sumDiffuse = vec3(0.0, 0.0, 0.0);
+    vec3 sumSpecular = vec3(0.0, 0.0, 0.0);
 
     for(int i = 0; i < 10; i++) {
 
@@ -41,11 +43,14 @@ void main() {
 
 
         // Diffuse
-        diffuse += light_colors[i] * max(dot(new_normal, norm_light_direction),0.0);
+        sumDiffuse += light_colors[i] * max(dot(new_normal, norm_light_direction),0.0);
 
         // Specular
         vec3 rVec =  reflect(-norm_light_direction, new_normal);
         vec3 vVec = normalize(camera_position - new_position);
-        specular += light_colors[i] * pow(max(dot(rVec, vVec), 0.0), material_shininess);
+        sumSpecular += light_colors[i] * pow(max(dot(rVec, vVec), 0.0), material_shininess);
     }
+
+    diffuse = sumDiffuse;
+    specular = sumSpecular;
 }
