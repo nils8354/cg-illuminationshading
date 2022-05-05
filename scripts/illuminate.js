@@ -177,25 +177,26 @@ class GlApp {
 
             this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_ambient, this.scene.light.ambient);
 
-
-            let light_position_array = new Array(10);
-            let light_color_array = new Array(10);
-            
-            for(let i = 0; i < this.scene.light.point_lights.length; i ++) {
-                light_color_array[i] = this.scene.light.point_lights[i].color;
-                light_position_array[i] = this.scene.light.point_lights[i].position;
+            let size = this.scene.light.point_lights.length;
+            let light_position_array = new Float32Array(size*3);
+            let light_color_array = new Float32Array(size*3);
+            let counter = 0;
+            for(let i = 0; i < size; i ++) {
+                let color = this.scene.light.point_lights[i].color;
+                let position = this.scene.light.point_lights[i].position;
+                for(let j = 0; j < 3; j++) {
+                    light_color_array[counter] = color[j];
+                    light_position_array[counter] = position[j];
+                    counter++;
+                }
             }
 
             this.gl.uniform1i(this.shader[selected_shader].uniforms.array_length, this.scene.light.point_lights.length);
 
-
             this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_positions, light_position_array);
             this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_colors, light_color_array);
-            
             this.gl.uniform3fv(this.shader[selected_shader].uniforms.camera_position, this.scene.camera.position);
-
             this.gl.uniform1f(this.shader[selected_shader].uniforms.material_shininess, this.scene.models[i].material.shininess);
-            console.log(this.shader[selected_shader].uniforms.material_shininess, this.scene.models[i].material.shininess);
             this.gl.bindVertexArray(this.vertex_array[this.scene.models[i].type]);
             this.gl.drawElements(this.gl.TRIANGLES, this.vertex_array[this.scene.models[i].type].face_index_count, this.gl.UNSIGNED_SHORT, 0);
             this.gl.bindVertexArray(null);
