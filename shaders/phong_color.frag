@@ -23,18 +23,22 @@ void main() {
 
     // Ambient
     vec3 ambient = light_ambient;
+    vec3 diffuse = vec3(0.0, 0.0, 0.0);
+    vec3 specular = vec3(0.0, 0.0, 0.0);
 
-    vec3 norm_light_direction = normalize(light_position - frag_pos);
+    for(int i = 0; i < array_length; i++) {
+        // L vec
+        vec3 norm_light_direction = normalize(light_positions[i] - frag_pos);
 
-    // Diffuse
-    vec3 diffuse = light_color * max(dot(frag_normal, norm_light_direction),0.0);
 
-    // Specular
-    vec3 rVec =  reflect(-norm_light_direction, frag_normal);
-    vec3 vVec = normalize(camera_position - frag_pos);
+        // Diffuse
+        diffuse += light_colors[i] * max(dot(frag_normal, norm_light_direction),0.0);
 
-    vec3 specular = light_color * pow(max(dot(rVec, vVec), 0.0), material_shininess);
-
+        // Specular
+        vec3 rVec =  reflect(-norm_light_direction, frag_normal);
+        vec3 vVec = normalize(camera_position - frag_pos);
+        specular += light_colors[i] * pow(max(dot(rVec, vVec), 0.0), material_shininess);
+    }
 
     //Ambient
     vec3 ambient_value = ambient * material_color;
