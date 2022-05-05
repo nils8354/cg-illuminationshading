@@ -190,6 +190,9 @@ class GlApp {
                     counter++;
                 }
             }
+            console.log("color", light_color_array);
+            console.log("position", light_position_array);
+            
             // Array size
             this.gl.uniform1i(this.shader[selected_shader].uniforms.array_length, this.scene.light.point_lights.length);
             // Light positions
