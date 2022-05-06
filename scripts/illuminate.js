@@ -145,7 +145,10 @@ class GlApp {
     updateTexture(texture, image_element) {
         //
         // TODO: update image for specified texture
-        //    
+        //   
+        this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
+        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, image_element.naturalWidth,image_element.naturalHeight, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image_element);
+        this.gl.bindTexture(this.gl.TEXTURE_2D, null);
     }
 
     render() {
@@ -186,7 +189,6 @@ class GlApp {
                 this.gl.uniform3fv(color_loc, this.scene.light.point_lights[i].color);
             }
             
-            console.log(this.shader[selected_shader].uniforms)
             
             // Array size
             this.gl.uniform1i(this.shader[selected_shader].uniforms.array_length, this.scene.light.point_lights.length);
