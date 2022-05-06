@@ -178,27 +178,22 @@ class GlApp {
             this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_ambient, this.scene.light.ambient);
 
             let size = this.scene.light.point_lights.length;
-            let light_position_array = new Float32Array(size*3);
-            let light_color_array = new Float32Array(size*3);
-            let counter = 0;
+            
             for(let i = 0; i < size; i ++) {
-                let color = this.scene.light.point_lights[i].color;
-                let position = this.scene.light.point_lights[i].position;
-                for(let j = 0; j < 3; j++) {
-                    light_color_array[counter] = color[j];
-                    light_position_array[counter] = position[j];
-                    counter++;
-                }
+                let pos_loc = this.gl.getUniformLocation(this.shader[selected_shader].program, "light_positions["+i+"]");
+                let color_loc = this.gl.getUniformLocation(this.shader[selected_shader].program, "light_colors["+i+"]");
+                this.gl.uniform3fv(pos_loc , this.scene.light.point_lights[i].position);
+                this.gl.uniform3fv(color_loc, this.scene.light.point_lights[i].color);
             }
-            console.log("color", light_color_array);
-            console.log("position", light_position_array);
+            
+            console.log(this.shader[selected_shader].uniforms)
             
             // Array size
             this.gl.uniform1i(this.shader[selected_shader].uniforms.array_length, this.scene.light.point_lights.length);
             // Light positions
-            this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_positions, light_position_array);
+            //this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_positions, light_position_array);
             // Light colors
-            this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_colors, light_color_array);
+            //this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_colors, light_color_array);
             // Camera position
             this.gl.uniform3fv(this.shader[selected_shader].uniforms.camera_position, this.scene.camera.position);
             // Material Shininess
@@ -206,6 +201,7 @@ class GlApp {
             this.gl.bindVertexArray(this.vertex_array[this.scene.models[i].type]);
             this.gl.drawElements(this.gl.TRIANGLES, this.vertex_array[this.scene.models[i].type].face_index_count, this.gl.UNSIGNED_SHORT, 0);
             this.gl.bindVertexArray(null);
+            console.log(this.shader[selected_shader].uniforms)
         }
 
         // draw all light sources
