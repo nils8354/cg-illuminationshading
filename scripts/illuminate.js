@@ -155,8 +155,8 @@ class GlApp {
         //
 
         this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
+        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, image_element.width, image_element.height, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image_element);
         this.gl.bindTexture(this.gl.TEXTURE_2D, null);
-
 
     }
 
