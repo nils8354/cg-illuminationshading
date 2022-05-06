@@ -126,9 +126,12 @@ class GlApp {
         // create a texture, and upload a temporary 1px white RGBA array [255,255,255,255]
         let texture = this.gl.createTexture();
 
-        //
-        // TODO: set texture parameters and upload a temporary 1px white RGBA array [255,255,255,255]
-        // 
+        this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR_MIPMAP_NEAREST);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.CLAMP_TO_EDGE);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.CLAMP_TO_EDGE);
+
 
         // download the actual image
         let image = new Image();
@@ -139,16 +142,22 @@ class GlApp {
         }, false);
         image.src = image_url;
 
+        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image); //not sure if correct
+        this.gl.generateMipmap(this.gl.TEXTURE_2D);
+        this.gl.bindTexture(this.gl.TEXTURE_2D, null);
+
         return texture;
     }
 
     updateTexture(texture, image_element) {
         //
         // TODO: update image for specified texture
-        //   
+        //
+
         this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
-        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, image_element.naturalWidth,image_element.naturalHeight, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image_element);
         this.gl.bindTexture(this.gl.TEXTURE_2D, null);
+
+
     }
 
     render() {
@@ -203,7 +212,17 @@ class GlApp {
             this.gl.bindVertexArray(this.vertex_array[this.scene.models[i].type]);
             this.gl.drawElements(this.gl.TRIANGLES, this.vertex_array[this.scene.models[i].type].face_index_count, this.gl.UNSIGNED_SHORT, 0);
             this.gl.bindVertexArray(null);
-            console.log(this.shader[selected_shader].uniforms)
+            console.log(this.scene)
+
+
+            if(selected_shader == "gouraud_texture" || selected_shader == "phong_texture") {
+
+                this.gl.activeTexture(this.gl.TEXTURE0);
+                this.gl.bindTexture(this.gl.TEXTURE_2D, this.scene.models[i].texture.id);
+                this.gl.uniform1i(this.shader[selected_shader].uniforms.image, 0);
+
+                this.gl.uniform2fv(this.shader[selected_shader].uniforms.texture_scale, this.scene.models[i].texture.scale);
+            }
         }
 
         // draw all light sources
