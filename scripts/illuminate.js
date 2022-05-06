@@ -145,7 +145,7 @@ class GlApp {
     updateTexture(texture, image_element) {
         //
         // TODO: update image for specified texture
-        //
+        //    
     }
 
     render() {
@@ -156,12 +156,9 @@ class GlApp {
         for (let i = 0; i < this.scene.models.length; i ++) {
             if (this.vertex_array[this.scene.models[i].type] == null) continue;
             
-            //
-            // TODO: properly select shader here
-            //
-            console.log(this.algorithm);
+
+            console.log(this.algorithm+ "_" + this.scene.models[i].shader);
             let selected_shader = this.algorithm + "_" + this.scene.models[i].shader;
-            //let selected_shader = "emissive";
             this.gl.useProgram(this.shader[selected_shader].program);
 
             // transform model to proper position, size, and orientation
@@ -177,21 +174,34 @@ class GlApp {
             this.gl.uniformMatrix4fv(this.shader[selected_shader].uniforms.projection_matrix, false, this.projection_matrix);
             this.gl.uniformMatrix4fv(this.shader[selected_shader].uniforms.view_matrix, false, this.view_matrix);
             this.gl.uniformMatrix4fv(this.shader[selected_shader].uniforms.model_matrix, false, this.model_matrix);
-
-            //
-            // TODO: bind proper texture and set uniform (if shader is a textured one)
-            //
-
+            // Ambient light
             this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_ambient, this.scene.light.ambient);
-            this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_position, this.scene.light.point_lights[0].position);
-            this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_color, this.scene.light.point_lights[0].color);
-            this.gl.uniform3fv(this.shader[selected_shader].uniforms.camera_position, this.scene.camera.position);
 
+            let size = this.scene.light.point_lights.length;
+            
+            for(let i = 0; i < size; i ++) {
+                let pos_loc = this.gl.getUniformLocation(this.shader[selected_shader].program, "light_positions["+i+"]");
+                let color_loc = this.gl.getUniformLocation(this.shader[selected_shader].program, "light_colors["+i+"]");
+                this.gl.uniform3fv(pos_loc , this.scene.light.point_lights[i].position);
+                this.gl.uniform3fv(color_loc, this.scene.light.point_lights[i].color);
+            }
+            
+            console.log(this.shader[selected_shader].uniforms)
+            
+            // Array size
+            this.gl.uniform1i(this.shader[selected_shader].uniforms.array_length, this.scene.light.point_lights.length);
+            // Light positions
+            //this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_positions, light_position_array);
+            // Light colors
+            //this.gl.uniform3fv(this.shader[selected_shader].uniforms.light_colors, light_color_array);
+            // Camera position
+            this.gl.uniform3fv(this.shader[selected_shader].uniforms.camera_position, this.scene.camera.position);
+            // Material Shininess
             this.gl.uniform1f(this.shader[selected_shader].uniforms.material_shininess, this.scene.models[i].material.shininess);
-            console.log(this.shader[selected_shader].uniforms.material_shininess, this.scene.models[i].material.shininess);
             this.gl.bindVertexArray(this.vertex_array[this.scene.models[i].type]);
             this.gl.drawElements(this.gl.TRIANGLES, this.vertex_array[this.scene.models[i].type].face_index_count, this.gl.UNSIGNED_SHORT, 0);
             this.gl.bindVertexArray(null);
+            console.log(this.shader[selected_shader].uniforms)
         }
 
         // draw all light sources
