@@ -125,13 +125,16 @@ class GlApp {
     initializeTexture(image_url) {
         // create a texture, and upload a temporary 1px white RGBA array [255,255,255,255]
         let texture = this.gl.createTexture();
-
+        let tempPixel = [255,255,255,255];
+                        
+         //need to make the type of this array correct, do not know what it is
         this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
         this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
-        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR_MIPMAP_NEAREST);
-        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.CLAMP_TO_EDGE);
-        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.CLAMP_TO_EDGE);
-
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
+        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, 2, 2, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE ,new Uint8Array(tempPixel));     
+        this.gl.bindTexture(this.gl.TEXTURE_2D, null);
 
         // download the actual image
         let image = new Image();
@@ -142,10 +145,7 @@ class GlApp {
         }, false);
         image.src = image_url;
 
-        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image); //not sure if correct
-        this.gl.generateMipmap(this.gl.TEXTURE_2D);
-        
-        this.gl.bindTexture(this.gl.TEXTURE_2D, null);
+       
 
         return texture;
     }
@@ -157,7 +157,7 @@ class GlApp {
         this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
         this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, image_element.naturalWidth, image_element.naturalHeight, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image_element);
         this.gl.bindTexture(this.gl.TEXTURE_2D, null);
-        
+        this.render();
     }
 
     render() {
@@ -218,10 +218,11 @@ class GlApp {
             if(selected_shader == "gouraud_texture" || selected_shader == "phong_texture") {
 
                 this.gl.activeTexture(this.gl.TEXTURE0);
-                this.gl.bindTexture(this.gl.TEXTURE_2D, this.scene.models[i].texture.id);
+                
                 this.gl.uniform1i(this.shader[selected_shader].uniforms.image, 0);
 
                 this.gl.uniform2fv(this.shader[selected_shader].uniforms.texture_scale, this.scene.models[i].texture.scale);
+                this.gl.bindTexture(this.gl.TEXTURE_2D, this.scene.models[i].texture.id);
             }
         }
 
