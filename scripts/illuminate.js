@@ -144,6 +144,7 @@ class GlApp {
 
         this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image); //not sure if correct
         this.gl.generateMipmap(this.gl.TEXTURE_2D);
+        
         this.gl.bindTexture(this.gl.TEXTURE_2D, null);
 
         return texture;
@@ -153,11 +154,10 @@ class GlApp {
         //
         // TODO: update image for specified texture
         //
-
         this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
-        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, image_element.width, image_element.height, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image_element);
+        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, image_element.naturalWidth, image_element.naturalHeight, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image_element);
         this.gl.bindTexture(this.gl.TEXTURE_2D, null);
-
+        
     }
 
     render() {
