@@ -49,4 +49,6 @@ void main() {
         vec3 vVec = normalize(camera_position - new_position);
         specular += light_colors[i] * pow(max(dot(rVec, vVec), 0.0), material_shininess);
     }
+
+    frag_texcoord = vertex_texcoord * texture_scale;
 }
