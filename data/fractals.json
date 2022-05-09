@@ -1,0 +1,34 @@
+{
+    "background": [0.1, 0.1, 0.1],
+    "camera": {
+        "position": [0.0, -5.0, 0.0],
+        "target": [0.0, 0.0, 0.0],
+        "up": [0.0, 1.0, 0.0]
+    },
+    "models": [
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [2.0, 3.5, 1.0],
+            "size": [1.0, 1.0, 1.0]
+        }
+    ],
+    "light": {
+        "ambient": [0.2, 0.2, 0.2],
+        "point_lights": [
+            {
+                "position": [1.5, 3.0, 1.5],
+                "color": [1.0, 1.0, 1.0]
+            },
+            {
+                "position": [-2.0, 3.5, -2.5],
+                "color": [1.0, 1.0, 1.0]
+            }
+        ]
+    }
+}

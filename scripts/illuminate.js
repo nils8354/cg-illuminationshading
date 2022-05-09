@@ -133,7 +133,7 @@ class GlApp {
         this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR);
         this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
         this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
-        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, 2, 2, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE ,new Uint8Array(tempPixel));     
+        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, 1, 1, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE ,new Uint8Array(tempPixel));     
         this.gl.bindTexture(this.gl.TEXTURE_2D, null);
 
         // download the actual image
@@ -215,14 +215,16 @@ class GlApp {
             console.log(this.scene)
 
 
+
             if(selected_shader == "gouraud_texture" || selected_shader == "phong_texture") {
+                
 
                 this.gl.activeTexture(this.gl.TEXTURE0);
+                this.gl.bindTexture(this.gl.TEXTURE_2D, this.scene.models[i].texture.id);
                 
                 this.gl.uniform1i(this.shader[selected_shader].uniforms.image, 0);
 
                 this.gl.uniform2fv(this.shader[selected_shader].uniforms.texture_scale, this.scene.models[i].texture.scale);
-                this.gl.bindTexture(this.gl.TEXTURE_2D, this.scene.models[i].texture.id);
             }
         }
 
