@@ -1,9 +1,9 @@
 {
-    "background": [0.1, 0.1, 0.1],
+    "background": [0.9, 0.9, 0.9],
     "camera": {
         "position": [0.0, -5.0, 0.0],
         "target": [0.0, 0.0, 0.0],
-        "up": [0.0, 1.0, 0.0]
+        "up": [0.0, 0.0, 1.0]
     },
     "models": [
         {
@@ -14,20 +14,416 @@
                 "specular": [1.0, 1.0, 1.0],
                 "shininess": 4
             },
-            "center": [2.0, 3.5, 1.0],
+            "center": [0.0, 0.0, 0.0],
             "size": [1.0, 1.0, 1.0]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.75, 0.0, 0.0],
+            "size": [0.5,0.5,0.5]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [1.125, 0.0, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.75, 0.0, 0.375],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.75, 0.0, -0.375],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.75, 0.375, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.75, -0.375, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [-0.75, 0.0, 0.0],
+            "size": [0.5,0.5,0.5]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [-1.125, 0.0, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [-0.75, 0.0, 0.375],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [-0.75, 0.0, -0.375],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [-0.75, 0.375, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [-0.75, -0.375, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, 0.75, 0.0],
+            "size": [0.5,0.5,0.5]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, 1.125, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.375, 0.75, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [-0.375, 0.75, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, 0.75, 0.375],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, 0.75, -0.375],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, -0.75, 0.0],
+            "size": [0.5,0.5,0.5]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, -1.125, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.375, -0.75, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [-0.375, -0.75, 0.0],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, -0.75, 0.375],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, -0.75, -0.375],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, 0.0, 0.75],
+            "size": [0.5,0.5,0.5]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, 0.0, 1.125],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.375, 0.0, 0.75],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [-0.375, 0.0, 0.75],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, -0.375, 0.75],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, 0.375, 0.75],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, 0.0, -0.75],
+            "size": [0.5,0.5,0.5]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, 0.0, -1.125],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.375, 0.0, -0.75],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [-0.375, 0.0, -0.75],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, -0.375, -0.75],
+            "size": [0.25,0.25,0.25]
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [0.392, 0.176, 0.569],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 4
+            },
+            "center": [0.0, 0.375, -0.75],
+            "size": [0.25,0.25,0.25]
         }
     ],
     "light": {
         "ambient": [0.2, 0.2, 0.2],
         "point_lights": [
             {
-                "position": [1.5, 3.0, 1.5],
-                "color": [1.0, 1.0, 1.0]
+                "position": [0.0, -1.2, 1.5],
+                "color": [0.780392, 0.729411, 0.1607843]
             },
             {
                 "position": [-2.0, 3.5, -2.5],
-                "color": [1.0, 1.0, 1.0]
+                "color": [0.023529, 0.9372549, 0.3294117]
             }
         ]
     }
