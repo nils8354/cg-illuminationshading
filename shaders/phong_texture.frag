@@ -50,5 +50,5 @@ void main() {
     //Specular
     vec3 specular_value = specular * material_specular;
 
-    FragColor = vec4(material_color, 1.0) * texture(image, frag_texcoord);
+    FragColor = vec4((ambient_value + diffuse_value + specular_value), 1.0) * texture(image, frag_texcoord);
 }
