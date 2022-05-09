@@ -191,11 +191,11 @@ class GlApp {
 
             let size = this.scene.light.point_lights.length;
             
-            for(let i = 0; i < size; i ++) {
-                let pos_loc = this.gl.getUniformLocation(this.shader[selected_shader].program, "light_positions["+i+"]");
-                let color_loc = this.gl.getUniformLocation(this.shader[selected_shader].program, "light_colors["+i+"]");
-                this.gl.uniform3fv(pos_loc , this.scene.light.point_lights[i].position);
-                this.gl.uniform3fv(color_loc, this.scene.light.point_lights[i].color);
+            for(let j = 0; j < size; j ++) {
+                let pos_loc = this.gl.getUniformLocation(this.shader[selected_shader].program, "light_positions["+j+"]");
+                let color_loc = this.gl.getUniformLocation(this.shader[selected_shader].program, "light_colors["+j+"]");
+                this.gl.uniform3fv(pos_loc , this.scene.light.point_lights[j].position);
+                this.gl.uniform3fv(color_loc, this.scene.light.point_lights[j].color);
             }
             
             
